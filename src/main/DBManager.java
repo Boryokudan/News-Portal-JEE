@@ -48,7 +48,7 @@ public class DBManager {
 
     public static Set<String> getSources() {
         ArrayList<Publication> publications = DBManager.getPublications();
-        Set<String> sources = new LinkedHashSet<>(publications.size());
+        Set<String> sources = new TreeSet<>();
         publications.stream().filter(publication -> sources.add(publication.getNews().getSource())).collect(Collectors.toList());
         return sources;
     }
@@ -160,5 +160,28 @@ public class DBManager {
             e.printStackTrace();
         }
         return publication;
+    }
+
+    public static String getSourceDescription(String sourceName) {
+        String sourceDescription = null;
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT source_description " +
+                        "FROM t_source_descriptions " +
+                        "WHERE source_name = ?"
+            );
+            statement.setString(1, sourceName);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                sourceDescription = resultSet.getString("source_description");
+            }
+            statement.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sourceDescription;
     }
 }

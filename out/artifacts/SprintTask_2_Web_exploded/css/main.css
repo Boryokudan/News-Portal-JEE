@@ -43,3 +43,7 @@
 .footer-font {
     font-size: 19px;
 }
+.details-main-bar {
+    color: black !important;
+    background-color: #EDF2F4 !important;
+}

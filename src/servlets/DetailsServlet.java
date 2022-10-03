@@ -20,9 +20,11 @@ public class DetailsServlet extends HttpServlet {
         Publication publication = DBManager.getPublication(id);
 
         Set<String> sources = DBManager.getSources();
+        String sourceDescription = DBManager.getSourceDescription(publication.getNews().getSource());
 
-        request.setAttribute("sources", sources);
         request.setAttribute("publication", publication);
+        request.setAttribute("source_description", sourceDescription);
+        request.setAttribute("sources", sources);
         request.getRequestDispatcher("JSPs/details.jsp").forward(request, response);
     }
 
