@@ -21,7 +21,7 @@
                                 <p class="card-text"><%= publications.get(0).getNews().getDescription() %></p>
                             </div>
                             <div class="card-footer p-3">
-                                <a href="#" class="btn b-group btn-lg">
+                                <a href="/details?id=<%= publications.get(0).getId() %>" class="btn b-group btn-lg">
                                     Read more <img src="/resources/icons/details.png" alt="read_more"></a>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                         <p class="card-text scrollable"><%= publications.get(1).getNews().getDescription() %></p>
                                     </div>
                                     <div class="card-footer p-3">
-                                        <a href="#" class="btn b-group btn-lg">
+                                        <a href="/details?id=<%= publications.get(1).getId() %>" class="btn b-group btn-lg">
                                             Read more <img src="/resources/icons/details.png" alt="read_more"></a></a>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@
                                         <p class="card-text scrollable"><%= publications.get(2).getNews().getDescription() %></p>
                                     </div>
                                     <div class="card-footer p-3">
-                                        <a href="#" class="btn b-group btn-lg">
+                                        <a href="/details?id=<%= publications.get(2).getId() %>" class="btn b-group btn-lg">
                                             Read more <img src="/resources/icons/details.png" alt="read_more"></a>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
                 </div>
         </div>
 <%--        Secondary container--%>
-        <div class="container-fluid col-10 p-2 border border-danger">
+        <div class="container-fluid col-10 p-2">
             <div class="row">
                 <%
                     }
@@ -74,7 +74,7 @@
                             <p class="card-text scrollable"><%= publications.get(i).getNews().getDescription() %></p>
                         </div>
                         <div class="card-footer p-3">
-                            <a href="#" class="btn b-group btn-lg">
+                            <a href="/details?id=<%= publications.get(i).getId() %>" class="btn b-group btn-lg">
                                 Read more <img src="/resources/icons/details.png" alt="read_more"></a></a>
                         </div>
                     </div>

@@ -1,3 +1,5 @@
+<%@ page import="java.util.Set" %>
+<%@ page import="main.Publication" %>
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid col-10 d-block">
         <div class="row">
@@ -25,7 +27,7 @@
             <div class="col-12 justify-content-between text-center">
                 <div class="btn-group col-12">
                     <%
-                        ArrayList<String> sources = (ArrayList<String>) request.getAttribute("sources");
+                        Set<String> sources = (Set<String>) request.getAttribute("sources");
                         if (sources != null) {
                             for (String source : sources) {
                     %>

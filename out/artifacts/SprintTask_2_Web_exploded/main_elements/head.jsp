@@ -1,5 +1,8 @@
 <head>
   <title>Theta News</title>
+
+<%--  Page icon--%>
+  <link rel="icon" href="/resources/logo/logo_pure.png">
 <%--  Bootstrap CSS and JS--%>
   <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.css">
   <link type="text/css" rel="stylesheet" href="../css/main.css">
