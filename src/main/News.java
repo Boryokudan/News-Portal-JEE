@@ -2,12 +2,12 @@ package main;
 
 public class News {
     private Long id;
-    private String source;
     private String title;
     private String description;
     private String content;
     private String date;
     private String imageURL;
+    private Source source;
     private Language language;
 
     public Long getId() {
@@ -16,14 +16,6 @@ public class News {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
     }
 
     public String getTitle() {
@@ -64,6 +56,14 @@ public class News {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public Source getSource() {
+        return source;
+    }
+
+    public void setSource(Source source) {
+        this.source = source;
     }
 
     public Language getLanguage() {

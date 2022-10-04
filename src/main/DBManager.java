@@ -47,9 +47,20 @@ public class DBManager {
     }
 
     public static Set<String> getSources() {
-        ArrayList<Publication> publications = DBManager.getPublications();
-        Set<String> sources = new TreeSet<>();
-        publications.stream().filter(publication -> sources.add(publication.getNews().getSource())).collect(Collectors.toList());
+        Set<String> sources = null;
+        try {
+            sources = new TreeSet<>();
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT source_name FROM t_source_data"
+            );
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                sources.add(resultSet.getString("source_name"));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return sources;
     }
 
@@ -59,20 +70,24 @@ public class DBManager {
             publications = new ArrayList<>();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT pub.id, " +
+                        "SELECT pub.id, " +
                             "       pub.rating, " +
                             "       pub.news_id, " +
-                            "       nw.source, " +
+                            "       nw.source_id, " +
                             "       nw.title, " +
                             "       nw.description, " +
                             "       nw.content, " +
                             "       nw.date, " +
                             "       nw.image_url, " +
                             "       nw.lang_id, " +
+                            "       src.source_name, " +
+                            "       src.source_description, " +
+                            "       src.source_url, " +
                             "       lang.lang_name, " +
                             "       lang.lang_code " +
                             "FROM t_publications pub " +
                             "INNER JOIN t_news nw ON nw.id = pub.news_id " +
+                            "INNER JOIN t_source_data src ON src.id = nw.source_id " +
                             "INNER JOIN t_languages lang ON lang.id = nw.lang_id " +
                             "ORDER BY pub.rating DESC, nw.date DESC"
             );
@@ -84,21 +99,26 @@ public class DBManager {
 
                 News news = new News();
                 news.setId(resultSet.getLong("news_id"));
-                news.setSource(resultSet.getString("source"));
                 news.setTitle(resultSet.getString("title"));
                 news.setDescription(resultSet.getString("description"));
                 news.setContent(resultSet.getString("content"));
                 news.setDate(resultSet.getString("date"));
                 news.setImageURL(resultSet.getString("image_url"));
 
+                Source source = new Source();
+                source.setId(resultSet.getLong("source_id"));
+                source.setSourceName(resultSet.getString("source_name"));
+                source.setSourceDescription(resultSet.getString("source_description"));
+                source.setSourceURL(resultSet.getString("source_url"));
+
                 Language language = new Language();
                 language.setId(resultSet.getLong("lang_id"));
                 language.setName(resultSet.getString("lang_name"));
                 language.setCode(resultSet.getString("lang_code"));
 
+                news.setSource(source);
                 news.setLanguage(language);
                 publication.setNews(news);
-
                 publications.add(publication);
             }
             statement.close();
@@ -114,44 +134,54 @@ public class DBManager {
             publication = new Publication();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT pub.id, " +
+                        "SELECT pub.id, " +
                             "       pub.rating, " +
                             "       pub.news_id, " +
-                            "       nw.source, " +
+                            "       nw.source_id, " +
                             "       nw.title, " +
                             "       nw.description, " +
                             "       nw.content, " +
                             "       nw.date, " +
                             "       nw.image_url, " +
                             "       nw.lang_id, " +
+                            "       src.source_name, " +
+                            "       src.source_description, " +
+                            "       src.source_url, " +
                             "       lang.lang_name, " +
                             "       lang.lang_code " +
                             "FROM t_publications pub " +
                             "INNER JOIN t_news nw ON nw.id = pub.news_id " +
+                            "INNER JOIN t_source_data src ON src.id = nw.source_id " +
                             "INNER JOIN t_languages lang ON lang.id = nw.lang_id " +
                             "WHERE pub.id = ?"
             );
             statement.setLong(1, id);
 
             ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 publication.setId(resultSet.getLong("id"));
                 publication.setRating(resultSet.getDouble("rating"));
 
                 News news = new News();
                 news.setId(resultSet.getLong("news_id"));
-                news.setSource(resultSet.getString("source"));
                 news.setTitle(resultSet.getString("title"));
                 news.setDescription(resultSet.getString("description"));
                 news.setContent(resultSet.getString("content"));
                 news.setDate(resultSet.getString("date"));
                 news.setImageURL(resultSet.getString("image_url"));
 
+                Source source = new Source();
+                source.setId(resultSet.getLong("source_id"));
+                source.setSourceName(resultSet.getString("source_name"));
+                source.setSourceDescription(resultSet.getString("source_description"));
+                source.setSourceURL(resultSet.getString("source_url"));
+
                 Language language = new Language();
                 language.setId(resultSet.getLong("lang_id"));
                 language.setName(resultSet.getString("lang_name"));
                 language.setCode(resultSet.getString("lang_code"));
 
+                news.setSource(source);
                 news.setLanguage(language);
                 publication.setNews(news);
             }
@@ -162,13 +192,13 @@ public class DBManager {
         return publication;
     }
 
-    public static String getSourceDescription(String sourceName) {
+    public static String getSource(String sourceName) {
         String sourceDescription = null;
 
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "SELECT source_description " +
-                        "FROM t_source_descriptions " +
+                        "FROM t_source_data " +
                         "WHERE source_name = ?"
             );
             statement.setString(1, sourceName);

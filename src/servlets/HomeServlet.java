@@ -2,6 +2,7 @@ package servlets;
 
 import main.DBManager;
 import main.Publication;
+import main.Source;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

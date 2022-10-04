@@ -2,6 +2,7 @@ package servlets;
 
 import main.DBManager;
 import main.Publication;
+import main.Source;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,11 +17,11 @@ import java.util.Set;
 public class DetailsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Set<String> sources = DBManager.getSources();
+
         Long id = Long.parseLong(request.getParameter("id"));
         Publication publication = DBManager.getPublication(id);
-
-        Set<String> sources = DBManager.getSources();
-        String sourceDescription = DBManager.getSourceDescription(publication.getNews().getSource());
+        String sourceDescription = publication.getNews().getSource().getSourceDescription();
 
         request.setAttribute("publication", publication);
         request.setAttribute("source_description", sourceDescription);

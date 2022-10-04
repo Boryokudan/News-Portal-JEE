@@ -18,7 +18,7 @@
                         <div class="card h-100">
                             <img class="card-img-top" src="<%= publications.get(0).getNews().getImageURL() %>" alt="img">
                             <div class="card-body description-text">
-                                <h4 class="card-title"><strong><%= publications.get(0).getNews().getTitle() %></strong></h4><hr>
+                                <h4 class="card-title fw-bold"><%= publications.get(0).getNews().getTitle() %></h4><hr>
                                 <p class="card-text"><%= publications.get(0).getNews().getDescription() %></p>
                             </div>
                             <div class="card-footer p-3">
@@ -34,7 +34,7 @@
                                 <div class="card h-100">
                                     <img class="card-img-top" src="<%= publications.get(1).getNews().getImageURL() %>" alt="img">
                                     <div class="card-body description-text">
-                                        <h4 class="card-title"><strong><%= publications.get(1).getNews().getTitle() %></strong></h4><hr>
+                                        <h4 class="card-title fw-bold"><%= publications.get(1).getNews().getTitle() %></h4><hr>
                                         <p class="card-text scrollable"><%= publications.get(1).getNews().getDescription() %></p>
                                     </div>
                                     <div class="card-footer p-3">
@@ -47,7 +47,7 @@
                                 <div class="card h-100">
                                     <img class="card-img-top" src="<%= publications.get(2).getNews().getImageURL() %>" alt="img">
                                     <div class="card-body description-text">
-                                        <h4 class="card-title"><strong><%= publications.get(2).getNews().getTitle() %></strong></h4><hr>
+                                        <h4 class="card-title fw-bold"><%= publications.get(2).getNews().getTitle() %></h4><hr>
                                         <p class="card-text scrollable"><%= publications.get(2).getNews().getDescription() %></p>
                                     </div>
                                     <div class="card-footer p-3">
