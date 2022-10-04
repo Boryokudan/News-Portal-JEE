@@ -1,4 +1,4 @@
-
+<%@ page import="main.Publication" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../main_elements/head.jsp"%>
 <html>

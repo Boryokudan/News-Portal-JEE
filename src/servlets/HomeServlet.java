@@ -1,6 +1,7 @@
 package servlets;
 
 import main.DBManager;
+import main.Language;
 import main.Publication;
 import main.Source;
 
@@ -17,10 +18,14 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Publication> publications = DBManager.getPublications();
+        ArrayList<Language> languages = DBManager.getLanguages();
         Set<String> sources = DBManager.getSources();
 
-        request.setAttribute("sources", sources);
+        System.out.println(languages.get(0).getName());
+
         request.setAttribute("publications", publications);
+        request.setAttribute("languages", languages);
+        request.setAttribute("sources", sources);
         request.getRequestDispatcher("JSPs/home.jsp").forward(request, response);
     }
 
