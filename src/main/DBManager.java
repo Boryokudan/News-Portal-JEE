@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class DBManager {
     private static Connection connection;
@@ -37,6 +36,7 @@ public class DBManager {
                 language.setId(resultSet.getLong("id"));
                 language.setName(resultSet.getString("lang_name"));
                 language.setCode(resultSet.getString("lang_code"));
+                language.setIconURL(resultSet.getString("lang_icon"));
                 languages.add(language);
             }
             statement.close();
@@ -84,7 +84,8 @@ public class DBManager {
                             "       src.source_description, " +
                             "       src.source_url, " +
                             "       lang.lang_name, " +
-                            "       lang.lang_code " +
+                            "       lang.lang_code, " +
+                            "       lang.lang_icon " +
                             "FROM t_publications pub " +
                             "INNER JOIN t_news nw ON nw.id = pub.news_id " +
                             "INNER JOIN t_source_data src ON src.id = nw.source_id " +
@@ -115,6 +116,7 @@ public class DBManager {
                 language.setId(resultSet.getLong("lang_id"));
                 language.setName(resultSet.getString("lang_name"));
                 language.setCode(resultSet.getString("lang_code"));
+                language.setIconURL(resultSet.getString("lang_icon"));
 
                 news.setSource(source);
                 news.setLanguage(language);
@@ -148,7 +150,8 @@ public class DBManager {
                             "       src.source_description, " +
                             "       src.source_url, " +
                             "       lang.lang_name, " +
-                            "       lang.lang_code " +
+                            "       lang.lang_code, " +
+                            "       lang.lang_icon " +
                             "FROM t_publications pub " +
                             "INNER JOIN t_news nw ON nw.id = pub.news_id " +
                             "INNER JOIN t_source_data src ON src.id = nw.source_id " +
@@ -180,6 +183,7 @@ public class DBManager {
                 language.setId(resultSet.getLong("lang_id"));
                 language.setName(resultSet.getString("lang_name"));
                 language.setCode(resultSet.getString("lang_code"));
+                language.setIconURL(resultSet.getString("lang_icon"));
 
                 news.setSource(source);
                 news.setLanguage(language);

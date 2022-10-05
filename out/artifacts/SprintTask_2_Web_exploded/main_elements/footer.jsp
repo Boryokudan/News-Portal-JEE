@@ -16,8 +16,8 @@
           </div>
 
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Contact us:</h6>
-            <p><i class="fas fa-home mr-3"></i>Aymanova st. 126, Almaty, 050005, Kazakhstan</p>
+            <h6 class="text-uppercase mb-4 font-weight-bold"><%= currentLocale.get("contact_us") %></h6>
+            <p><i class="fas fa-home mr-3"></i><%= currentLocale.get("address") %></p>
             <p><i class="fas fa-envelope mr-3"></i> helpdesk@theta.com</p>
             <p><i class="fas fa-phone mr-3"></i>+7(727) 211-11-11</p>
             <p><i class="fas fa-print mr-3"></i>+7(701) 111-11-11</p>

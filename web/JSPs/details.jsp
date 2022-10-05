@@ -4,11 +4,11 @@
 <html>
     <%@include file="../main_elements/navbar.jsp"%>
     <body class="grad">
-        <%--    Main container--%>
         <%
             Publication publication = (Publication) request.getAttribute("publication");
             String sourceDescription = (String) request.getAttribute("source_description");
         %>
+        <%--    Main container--%>
         <div class="container-fluid col-10 p-2 mx-auto">
             <div class="row">
                 <div class="col-8 border border-danger">
@@ -21,12 +21,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4 border border-danger">
+                <div class="col-4">
                     <div class="row">
                         <div class="card about-source h-50">
                             <div class="card-body description-text">
-                                <h4 class="card-title fw-bold"><i>About "<%= publication.getNews().getSource()
-                                        .getSourceName() %>"</i></h4><hr>
+                                <h4 class="card-title fw-bold"><i><%= currentLocale.get("about_source") %>
+                                    "<%= publication.getNews().getSource().getSourceName() %>"</i></h4><hr>
                                 <p class="card-text"><%= sourceDescription %></p>
                             </div>
                             <div class="card-footer p-3">

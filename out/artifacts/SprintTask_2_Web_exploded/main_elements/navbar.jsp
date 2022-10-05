@@ -1,10 +1,32 @@
-<%@ page import="java.util.Set" %>
+<%@ page import="java.util.*" %>
 <%@ page import="main.Language" %>
+<%@ page import="java.util.stream.Collectors" %>
 
 <%
-    ArrayList<Language> languages = (ArrayList<Language>) request.getAttribute("languages");
-    System.out.println(languages.get(1).getName());
     Set<String> sources = (Set<String>) request.getAttribute("sources");
+    ArrayList<Language> languages = (ArrayList<Language>) request.getAttribute("languages");
+    HashMap<String, HashMap<String, String>> locales = (HashMap<String, HashMap<String, String>>) request.getAttribute("locales");
+
+    String currentLangCode = "en";
+
+    Cookie[] cookies = request.getCookies();
+    Optional<Cookie> langOpt = Arrays.stream(cookies)
+                                        .filter(cookie -> cookie.getName().equalsIgnoreCase("lang"))
+                                        .findFirst();
+
+    if (!langOpt.isEmpty()) {
+        currentLangCode = langOpt.get().getValue();
+    }
+    System.out.println(currentLangCode);
+    HashMap<String, String> currentLocale = locales.get(currentLangCode);
+    String finalCurrentLangCode = currentLangCode;
+    Language currentLang = null;
+    Optional<Language> currentLangOpt = languages.stream()
+                                                    .filter(lang -> lang.getCode().equalsIgnoreCase(finalCurrentLangCode))
+                                                    .findFirst();
+    if (!currentLangOpt.isEmpty()) {
+        currentLang = currentLangOpt.get();
+    }
 %>
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid col-10 d-block">
@@ -20,30 +42,31 @@
                 <%--        Navbar--%>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <div class="nav-item">
-                            <a class="nav-link me-0 btn b-group btn-md" href="/authentication">
-                                <img src="/resources/icons/login.png" alt="login"> Log In</a>
-                        </div>
-                        <div class="nav-item dropdown">
+                        <div class="nav-item dropdown me-3">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
+                                <img src="<%= currentLang.getIconURL() %>" alt="lang_icon">
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <ul class="dropdown-menu dropdown-text">
+                                <%
+                                    if (languages != null) {
+                                        for (Language lang : languages) {
+                                %>
+                                        <li>
+                                            <a class="dropdown-item" href="/language?lang=<%= lang.getCode() %>">
+                                                <img class="me-2" src="<%= lang.getIconURL() %>" alt="en_icon">
+                                                <%=lang.getName()%>
+                                            </a>
+                                        </li>
+                                <%
+                                        }
+                                    }
+                                %>
                             </ul>
                         </div>
-                            <%--                                    <%--%>
-                            <%--                                        if (languages != null) {--%>
-                            <%--                                            for (Language language : languages) {--%>
-                            <%--                                    %>--%>
-                            <%--                                    <a class="dropdown-item" name="<%= language.getCode() %>"><%= language.getName() %></a>--%>
-                            <%--                                    <%--%>
-                            <%--                                        }--%>
-                            <%--                                    }--%>
-                            <%--                                    %>--%>
+                        <div class="nav-item">
+                            <a class="nav-link me-0 btn b-group btn-md" href="/authentication">
+                                <img src="/resources/icons/login.png" alt="login"> <%= currentLocale.get("login") %></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,7 +79,7 @@
                         if (sources != null) {
                             for (String source : sources) {
                     %>
-                    <a href="#" class="btn b-group btn-lg"><%= source %></a>
+                    <a href="/home" class="btn b-group btn-lg"><%= source %></a>
                     <%
                             }
                         }

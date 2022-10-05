@@ -10,6 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -19,12 +20,12 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Publication> publications = DBManager.getPublications();
         ArrayList<Language> languages = DBManager.getLanguages();
+        HashMap<String, HashMap<String, String>> locales = Language.getLocales();
         Set<String> sources = DBManager.getSources();
-
-        System.out.println(languages.get(0).getName());
 
         request.setAttribute("publications", publications);
         request.setAttribute("languages", languages);
+        request.setAttribute("locales", locales);
         request.setAttribute("sources", sources);
         request.getRequestDispatcher("JSPs/home.jsp").forward(request, response);
     }

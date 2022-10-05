@@ -1,5 +1,5 @@
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="main.Publication" %>
+<%@ page import="java.util.*" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -10,19 +10,25 @@
 <%--    Main container--%>
         <div class="container-fluid col-10 p-2">
             <%
-                ArrayList<Publication> publications = (ArrayList<Publication>) request.getAttribute("publications");
-                if (publications != null) {
+                ArrayList<Publication> allPublications = (ArrayList<Publication>) request.getAttribute("publications");
+
+                Language finalCurrentLang = currentLang;
+                ArrayList<Publication> relevantPublications = (ArrayList<Publication>) allPublications.stream()
+                        .filter(pub -> pub.getNews().getLanguage().getCode().equals(finalCurrentLang.getCode()))
+                        .collect(Collectors.toList());
+
+                if (relevantPublications != null) {
             %>
                 <div class="row">
                     <div class="col-12 col-md-12 col-xxl-8 my-2">
                         <div class="card h-100">
-                            <img class="card-img-top" src="<%= publications.get(0).getNews().getImageURL() %>" alt="img">
+                            <img class="card-img-top" src="<%= relevantPublications.get(0).getNews().getImageURL() %>" alt="img">
                             <div class="card-body description-text">
-                                <h4 class="card-title fw-bold"><%= publications.get(0).getNews().getTitle() %></h4><hr>
-                                <p class="card-text"><%= publications.get(0).getNews().getDescription() %></p>
+                                <h4 class="card-title fw-bold"><%= relevantPublications.get(0).getNews().getTitle() %></h4><hr>
+                                <p class="card-text"><%= relevantPublications.get(0).getNews().getDescription() %></p>
                             </div>
                             <div class="card-footer p-3">
-                                <a href="/details?id=<%= publications.get(0).getId() %>" class="btn b-group btn-lg">
+                                <a href="/details?id=<%= relevantPublications.get(0).getId() %>" class="btn b-group btn-lg">
                                     Read more <img src="/resources/icons/details.png" alt="read_more"></a>
                             </div>
                         </div>
@@ -32,26 +38,26 @@
                         <div class="row">
                             <div class="col-12 my-2">
                                 <div class="card h-100">
-                                    <img class="card-img-top" src="<%= publications.get(1).getNews().getImageURL() %>" alt="img">
+                                    <img class="card-img-top" src="<%= relevantPublications.get(1).getNews().getImageURL() %>" alt="img">
                                     <div class="card-body description-text">
-                                        <h4 class="card-title fw-bold"><%= publications.get(1).getNews().getTitle() %></h4><hr>
-                                        <p class="card-text scrollable"><%= publications.get(1).getNews().getDescription() %></p>
+                                        <h4 class="card-title fw-bold"><%= relevantPublications.get(1).getNews().getTitle() %></h4><hr>
+                                        <p class="card-text scrollable"><%= relevantPublications.get(1).getNews().getDescription() %></p>
                                     </div>
                                     <div class="card-footer p-3">
-                                        <a href="/details?id=<%= publications.get(1).getId() %>" class="btn b-group btn-lg">
+                                        <a href="/details?id=<%= relevantPublications.get(1).getId() %>" class="btn b-group btn-lg">
                                             Read more <img src="/resources/icons/details.png" alt="read_more"></a></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 my-2">
                                 <div class="card h-100">
-                                    <img class="card-img-top" src="<%= publications.get(2).getNews().getImageURL() %>" alt="img">
+                                    <img class="card-img-top" src="<%= relevantPublications.get(2).getNews().getImageURL() %>" alt="img">
                                     <div class="card-body description-text">
-                                        <h4 class="card-title fw-bold"><%= publications.get(2).getNews().getTitle() %></h4><hr>
-                                        <p class="card-text scrollable"><%= publications.get(2).getNews().getDescription() %></p>
+                                        <h4 class="card-title fw-bold"><%= relevantPublications.get(2).getNews().getTitle() %></h4><hr>
+                                        <p class="card-text scrollable"><%= relevantPublications.get(2).getNews().getDescription() %></p>
                                     </div>
                                     <div class="card-footer p-3">
-                                        <a href="/details?id=<%= publications.get(2).getId() %>" class="btn b-group btn-lg">
+                                        <a href="/details?id=<%= relevantPublications.get(2).getId() %>" class="btn b-group btn-lg">
                                             Read more <img src="/resources/icons/details.png" alt="read_more"></a>
                                     </div>
                                 </div>
@@ -65,18 +71,19 @@
             <div class="row">
                 <%
                     }
-                    for (int i = 3; i < publications.size(); i++) {
+                    for (int i = 3; i < relevantPublications.size(); i++) {
                 %>
                 <div class="col-sm-12 col-md-6 col-xxl-4 my-2">
                     <div class="card h-100">
-                        <img class="card-img-top" src="<%= publications.get(i).getNews().getImageURL() %>" alt="img">
+                        <img class="card-img-top" src="<%= relevantPublications.get(i).getNews().getImageURL() %>" alt="img">
                         <div class="card-body description-text">
-                            <h4 class="card-title"><strong><%= publications.get(i).getNews().getTitle() %></strong></h4><hr><br>
-                            <p class="card-text scrollable"><%= publications.get(i).getNews().getDescription() %></p>
+                            <h4 class="card-title"><strong><%= relevantPublications.get(i).getNews().getTitle() %></strong></h4><hr><br>
+                            <p class="card-text scrollable"><%= relevantPublications.get(i).getNews().getDescription() %></p>
                         </div>
                         <div class="card-footer p-3">
-                            <a href="/details?id=<%= publications.get(i).getId() %>" class="btn b-group btn-lg">
-                                Read more <img src="/resources/icons/details.png" alt="read_more"></a></a>
+                            <a href="/details?id=<%= relevantPublications.get(i).getId() %>" class="btn b-group btn-lg">
+                                Read more <img src="/resources/icons/details.png" alt="read_more">
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,7 @@
   <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.css">
   <link type="text/css" rel="stylesheet" href="../css/main.css">
   <script type="text/javascript" src="../bootstrap/js/bootstrap.js" defer></script>
+  <script type="text/javascript" src="../bootstrap/js/bootstrap.bundle.js" defer></script>
 
 <%--  Google fonts--%>
   <link rel="preconnect" href="https://fonts.googleapis.com">
