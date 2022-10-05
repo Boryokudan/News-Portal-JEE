@@ -17,7 +17,6 @@
     if (!langOpt.isEmpty()) {
         currentLangCode = langOpt.get().getValue();
     }
-    System.out.println(currentLangCode);
     HashMap<String, String> currentLocale = locales.get(currentLangCode);
     String finalCurrentLangCode = currentLangCode;
     Language currentLang = null;
@@ -41,7 +40,7 @@
                 </div>
                 <%--        Navbar--%>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <div class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-baseline">
                         <div class="nav-item dropdown me-3">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="<%= currentLang.getIconURL() %>" alt="lang_icon">
@@ -64,7 +63,7 @@
                             </ul>
                         </div>
                         <div class="nav-item">
-                            <a class="nav-link me-0 btn b-group btn-md" href="/authentication">
+                            <a class="nav-link me-0 mt-2 btn b-group btn-md" href="/authentication">
                                 <img src="/resources/icons/login.png" alt="login"> <%= currentLocale.get("login") %></a>
                         </div>
                     </div>
@@ -79,7 +78,7 @@
                         if (sources != null) {
                             for (String source : sources) {
                     %>
-                    <a href="/home" class="btn b-group btn-lg"><%= source %></a>
+                    <a href="/source?src=<%= source %>" class="btn b-group btn-lg"><%= source %></a>
                     <%
                             }
                         }

@@ -24,7 +24,11 @@
                         <div class="card h-100">
                             <img class="card-img-top" src="<%= relevantPublications.get(0).getNews().getImageURL() %>" alt="img">
                             <div class="card-body description-text">
-                                <h4 class="card-title fw-bold"><%= relevantPublications.get(0).getNews().getTitle() %></h4><hr>
+                                <a class="ms-3 my-2 text-decoration-none" href="<%= relevantPublications.get(0).getNews().getSource().getSourceURL() %>">
+                                    <%= relevantPublications.get(0).getNews().getSource().getSourceName()%>
+                                </a>
+                                <h4 class="card-title fw-bold ms-3 my-2"><%= relevantPublications.get(0).getNews().getTitle() %></h4>
+                                <p class="card-text ms-3 my-2"><%= relevantPublications.get(0).getNews().getDate() %></p><hr>
                                 <p class="card-text"><%= relevantPublications.get(0).getNews().getDescription() %></p>
                             </div>
                             <div class="card-footer p-3">
@@ -40,7 +44,11 @@
                                 <div class="card h-100">
                                     <img class="card-img-top" src="<%= relevantPublications.get(1).getNews().getImageURL() %>" alt="img">
                                     <div class="card-body description-text">
-                                        <h4 class="card-title fw-bold"><%= relevantPublications.get(1).getNews().getTitle() %></h4><hr>
+                                        <a class="ms-3 my-2 text-decoration-none" href="<%= relevantPublications.get(1).getNews().getSource().getSourceURL() %>">
+                                            <%= relevantPublications.get(1).getNews().getSource().getSourceName()%>
+                                        </a>
+                                        <h4 class="card-title fw-bold ms-3 my-2"><%= relevantPublications.get(1).getNews().getTitle() %></h4>
+                                        <p class="card-text ms-3 my-2"><%= relevantPublications.get(1).getNews().getDate() %></p><hr>
                                         <p class="card-text scrollable"><%= relevantPublications.get(1).getNews().getDescription() %></p>
                                     </div>
                                     <div class="card-footer p-3">
@@ -53,7 +61,11 @@
                                 <div class="card h-100">
                                     <img class="card-img-top" src="<%= relevantPublications.get(2).getNews().getImageURL() %>" alt="img">
                                     <div class="card-body description-text">
-                                        <h4 class="card-title fw-bold"><%= relevantPublications.get(2).getNews().getTitle() %></h4><hr>
+                                        <a class="ms-3 my-2 text-decoration-none" href="<%= relevantPublications.get(2).getNews().getSource().getSourceURL() %>">
+                                            <%= relevantPublications.get(2).getNews().getSource().getSourceName()%>
+                                        </a>
+                                        <h4 class="card-title fw-bold ms-3 my-2"><%= relevantPublications.get(2).getNews().getTitle() %></h4>
+                                        <p class="card-text ms-3 my-2"><%= relevantPublications.get(2).getNews().getDate() %></p><hr>
                                         <p class="card-text scrollable"><%= relevantPublications.get(2).getNews().getDescription() %></p>
                                     </div>
                                     <div class="card-footer p-3">
@@ -77,7 +89,11 @@
                     <div class="card h-100">
                         <img class="card-img-top" src="<%= relevantPublications.get(i).getNews().getImageURL() %>" alt="img">
                         <div class="card-body description-text">
-                            <h4 class="card-title"><strong><%= relevantPublications.get(i).getNews().getTitle() %></strong></h4><hr><br>
+                            <a class="ms-3 my-2 text-decoration-none" href="<%= relevantPublications.get(0).getNews().getSource().getSourceURL() %>">
+                                <%= relevantPublications.get(i).getNews().getSource().getSourceName()%>
+                            </a>
+                            <h4 class="card-title fw-bold ms-3 my-2"><%= relevantPublications.get(i).getNews().getTitle() %></h4>
+                            <p class="card-text ms-3 my-2"><%= relevantPublications.get(i).getNews().getDate() %></p><hr>
                             <p class="card-text scrollable"><%= relevantPublications.get(i).getNews().getDescription() %></p>
                         </div>
                         <div class="card-footer p-3">

@@ -15,9 +15,13 @@
                     <div class="card text-bg-light h-100 p-3">
                         <img class="card-img-top" src="<%= publication.getNews().getImageURL() %>" alt="img">
                         <div class="card-body description-text">
-                            <h4 class="card-title fw-bold"><%= publication.getNews().getTitle() %></h4><br>
-                            <p class="card-text"><i><%= publication.getNews().getDescription() %></i></p><hr><br>
-                            <p><%= publication.getNews().getContent() %></p>
+                            <a class="ms-3 my-2 text-decoration-none" href="<%= publication.getNews().getSource().getSourceURL() %>">
+                                <%= publication.getNews().getSource().getSourceName()%>
+                            </a>
+                            <h4 class="card-title fw-bold ms-3 my-2"><%= publication.getNews().getTitle() %></h4>
+                            <p class="card-text ms-3 my-2"><%= publication.getNews().getDate() %></p>
+                            <p class="card-text mt-4 ms-3 my-2"><%= publication.getNews().getDescription() %></p><hr>
+                            <p class="card-text"><%= publication.getNews().getContent() %></p>
                         </div>
                     </div>
                 </div>
