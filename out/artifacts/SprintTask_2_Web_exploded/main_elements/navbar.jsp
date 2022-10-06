@@ -2,12 +2,17 @@
 <%@ page import="main.Language" %>
 <%@ page import="java.util.stream.Collectors" %>
 <%@ page import="main.Source" %>
+<%@ page import="main.User" %>
 
 <%
     // Main params;
     ArrayList<Source> sources = (ArrayList<Source>) request.getAttribute("sources");
     ArrayList<Language> languages = (ArrayList<Language>) request.getAttribute("languages");
     HashMap<String, HashMap<String, String>> locales = (HashMap<String, HashMap<String, String>>) request.getAttribute("locales");
+
+    // Checking if any user is logged in;
+    User activeUser = (User) session.getAttribute("activeUser");
+    boolean userOnline = activeUser != null;
 
     // Default lang value;
     String currentLangCode = "en";
@@ -54,6 +59,22 @@
                 <%--        Navbar--%>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-baseline">
+                        <div class="nav-item">
+                            <a class="nav-link me-0 mt-2 mx-3" href="/">
+                                <%= currentLocale.get("home") %>
+                            </a>
+                        </div>
+                        <%
+                            if (userOnline) {
+                        %>
+                        <div class="nav-item">
+                            <a class="nav-link me-0 mt-2 mx-3" href="/profile">
+                                <%= activeUser.getFullName() %>
+                            </a>
+                        </div>
+                        <%
+                            }
+                        %>
                         <div class="nav-item dropdown me-3">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="<%= currentLang.getIconURL() %>" alt="lang_icon">
@@ -76,10 +97,23 @@
                                 %>
                             </ul>
                         </div>
-                        <div class="nav-item">
-                            <a class="nav-link me-0 mt-2 btn b-group btn-md" href="/authentication">
-                                <img src="/resources/icons/login.png" alt="login"> <%= currentLocale.get("login") %></a>
-                        </div>
+                        <%
+                            if (!userOnline) {
+                        %>
+                            <div class="nav-item">
+                                <a class="nav-link me-0 mt-2 btn b-group btn-md" href="/authentication">
+                                    <img src="/resources/icons/login.png" alt="login"> <%= currentLocale.get("login") %></a>
+                            </div>
+                        <%
+                            } else {
+                        %>
+                            <div class="nav-item">
+                                <a class="nav-link me-0 mt-2 btn b-group btn-md" href="/logout">
+                                    <%= currentLocale.get("logout") %> <img src="/resources/icons/login.png" alt="login"></a>
+                            </div>
+                        <%
+                            }
+                        %>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,9 @@
     ArrayList<Language> languages = (ArrayList<Language>) request.getAttribute("languages");
     HashMap<String, HashMap<String, String>> locales = (HashMap<String, HashMap<String, String>>) request.getAttribute("locales");
 
+    // Checking if any user is logged in;
     User activeUser = (User) session.getAttribute("activeUser");
+    boolean userOnline = activeUser != null;
 
     // Default lang value;
     String currentLangCode = "en";
@@ -63,7 +65,8 @@
                             </a>
                         </div>
                         <%
-                            if (activeUser != null) {
+                            if (userOnline) {
+                                
                         %>
                         <div class="nav-item">
                             <a class="nav-link me-0 mt-2 mx-3" href="/profile">
@@ -95,10 +98,23 @@
                                 %>
                             </ul>
                         </div>
-                        <div class="nav-item">
-                            <a class="nav-link me-0 mt-2 btn b-group btn-md" href="/authentication">
-                                <img src="/resources/icons/login.png" alt="login"> <%= currentLocale.get("login") %></a>
-                        </div>
+                        <%
+                            if (!userOnline) {
+                        %>
+                            <div class="nav-item">
+                                <a class="nav-link me-0 mt-2 btn b-group btn-md" href="/authentication">
+                                    <img src="/resources/icons/login.png" alt="login"> <%= currentLocale.get("login") %></a>
+                            </div>
+                        <%
+                            } else {
+                        %>
+                            <div class="nav-item">
+                                <a class="nav-link me-0 mt-2 btn b-group btn-md" href="/logout">
+                                    <%= currentLocale.get("logout") %> <img src="/resources/icons/login.png" alt="login"></a>
+                            </div>
+                        <%
+                            }
+                        %>
                     </div>
                 </div>
             </div>

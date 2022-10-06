@@ -11,7 +11,7 @@
         <%--    Main container--%>
         <div class="container-fluid col-10 p-2 mx-auto">
             <div class="row">
-                <div class="col-8 border border-danger">
+                <div class="col-8">
                     <div class="card text-bg-light h-100 p-3">
                         <img class="card-img-top" src="<%= publication.getNews().getImageURL() %>" alt="img">
                         <div class="card-body description-text">
