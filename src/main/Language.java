@@ -13,6 +13,7 @@ public class Language {
         HashMap<String, HashMap<String, String>> locales = new HashMap<>();
         HashMap<String, String> localeRU = new HashMap<>();
         localeRU.put("home", "Главная");
+        localeRU.put("admin_panel", "MyAdmin");
         localeRU.put("login", "Вход");
         localeRU.put("logout", "Выход");
         localeRU.put("name", "Имя:");
@@ -28,6 +29,7 @@ public class Language {
 
         HashMap<String, String> localeEN = new HashMap<>();
         localeEN.put("home", "Home");
+        localeEN.put("admin_panel", "MyAdmin");
         localeEN.put("login", "Log In");
         localeEN.put("logout", "Log Out");
         localeEN.put("name", "Name:");

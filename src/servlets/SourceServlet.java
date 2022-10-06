@@ -23,14 +23,16 @@ public class SourceServlet extends HttpServlet {
         HashMap<String, HashMap<String, String>> locales = Language.getLocales();
         ArrayList<Source> sources = DBManager.getSources();
 
-        String source = request.getParameter("src");
-        source = source.replace("%20", " ");
-
         request.setAttribute("publications", publications);
         request.setAttribute("languages", languages);
         request.setAttribute("locales", locales);
         request.setAttribute("sources", sources);
+
+        String source = request.getParameter("src");
+        source = source.replace("%20", " ");
+
         request.setAttribute("source", source);
+
         request.getRequestDispatcher("JSPs/source.jsp").forward(request, response);
     }
 

@@ -12,7 +12,6 @@
 
     // Checking if any user is logged in;
     User activeUser = (User) session.getAttribute("activeUser");
-    boolean userOnline = activeUser != null;
 
     // Default lang value;
     String currentLangCode = "en";
@@ -61,17 +60,53 @@
                     <div class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-baseline">
                         <div class="nav-item">
                             <a class="nav-link me-0 mt-2 mx-3" href="/">
-                                <%= currentLocale.get("home") %>
+                                <img src="/resources/icons/home.png" class="me-1" height="30px" alt="home_icon"> <%= currentLocale.get("home") %>
                             </a>
                         </div>
                         <%
-                            if (userOnline) {
+                            if (activeUser != null) {
+                                // Admin menu:
+                                if (activeUser.getRole() == 1) {
                         %>
-                        <div class="nav-item">
-                            <a class="nav-link me-0 mt-2 mx-3" href="/profile">
-                                <%= activeUser.getFullName() %>
-                            </a>
-                        </div>
+                                    <div class="nav-item">
+                                        <a class="nav-link me-0 mt-2 mx-3" href="/admin-panel">
+                                            <img src="/resources/icons/admin.png" class="me-1" height="30px" alt="admin_icon"> <%= currentLocale.get("admin_panel") %>
+                                        </a>
+                                    </div>
+                                    <div class="nav-item">
+                                        <a class="nav-link me-0 mt-2 mx-3" href="/profile">
+                                            <img src="/resources/icons/profile.png" class="me-1" height="30px" alt="profile_icon"> <%= activeUser.getFullName() %>
+                                        </a>
+                                    </div>
+                                    <div class="nav-item">
+                                        <a class="nav-link me-0 mt-2" href="/logout">
+                                            <img src="/resources/icons/login.png" height="30px" alt="login_icon"></a><%= currentLocale.get("logout") %>
+                                    </div>
+                        <%
+                                }
+                                // User menu:
+                                else {
+                        %>
+                                <div class="nav-item">
+                                    <a class="nav-link me-0 mt-2 mx-3" href="/profile">
+                                        <img src="/resources/icons/profile.png" class="me-1" height="30px" alt="profile_icon"> <%= activeUser.getFullName() %>
+                                    </a>
+                                </div>
+                                <div class="nav-item">
+                                    <a class="nav-link me-0 mt-2" href="/logout">
+                                        <img src="/resources/icons/login.png" height="30px" alt="login_icon"></a><%= currentLocale.get("logout") %>
+                                </div>
+                        <%
+                                }
+                            }
+                            // Anonymous user menu;
+                            else {
+                        %>
+                            <div class="nav-item">
+                                <a class="nav-link me-0 mt-2" href="/authentication">
+                                    <img src="/resources/icons/login.png" height="30px" alt="login"> <%= currentLocale.get("login") %>
+                                </a>
+                            </div>
                         <%
                             }
                         %>
@@ -85,35 +120,18 @@
                                     if (languages != null) {
                                         for (Language lang : languages) {
                                 %>
-                                        <li>
-                                            <a class="dropdown-item" href="/language?lang=<%= lang.getCode() %>">
-                                                <img class="me-2" src="<%= lang.getIconURL() %>" alt="en_icon">
-                                                <%=lang.getName()%>
-                                            </a>
-                                        </li>
+                                <li>
+                                    <a class="dropdown-item" href="/language?lang=<%= lang.getCode() %>">
+                                        <img class="me-2" src="<%= lang.getIconURL() %>" alt="en_icon">
+                                        <%=lang.getName()%>
+                                    </a>
+                                </li>
                                 <%
                                         }
                                     }
                                 %>
                             </ul>
                         </div>
-                        <%
-                            if (!userOnline) {
-                        %>
-                            <div class="nav-item">
-                                <a class="nav-link me-0 mt-2 btn b-group btn-md" href="/authentication">
-                                    <img src="/resources/icons/login.png" alt="login"> <%= currentLocale.get("login") %></a>
-                            </div>
-                        <%
-                            } else {
-                        %>
-                            <div class="nav-item">
-                                <a class="nav-link me-0 mt-2 btn b-group btn-md" href="/logout">
-                                    <%= currentLocale.get("logout") %> <img src="/resources/icons/login.png" alt="login"></a>
-                            </div>
-                        <%
-                            }
-                        %>
                     </div>
                 </div>
             </div>

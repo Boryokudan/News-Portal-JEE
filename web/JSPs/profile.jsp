@@ -10,7 +10,7 @@
             <%
                 int userRole = activeUser.getRole();
                 String userRoleStr = userRole == 1
-                        ? (currentLangCode.equals("en") ? "superman" : "супермен")
+                        ? (currentLangCode.equals("en") ? "superman" : "Вершитель судеб")
                         : (currentLangCode.equals("en") ? "user" : "Пользователь");
             %>
             <form>
