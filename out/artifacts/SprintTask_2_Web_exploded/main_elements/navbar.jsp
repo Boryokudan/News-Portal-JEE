@@ -1,22 +1,26 @@
 <%@ page import="java.util.*" %>
 <%@ page import="main.Language" %>
 <%@ page import="java.util.stream.Collectors" %>
+<%@ page import="main.Source" %>
 
 <%
-    Set<String> sources = (Set<String>) request.getAttribute("sources");
+    // Main params;
+    ArrayList<Source> sources = (ArrayList<Source>) request.getAttribute("sources");
     ArrayList<Language> languages = (ArrayList<Language>) request.getAttribute("languages");
     HashMap<String, HashMap<String, String>> locales = (HashMap<String, HashMap<String, String>>) request.getAttribute("locales");
 
+    // Default lang value;
     String currentLangCode = "en";
 
+    // Cookie processing;
     Cookie[] cookies = request.getCookies();
     Optional<Cookie> langOpt = Arrays.stream(cookies)
                                         .filter(cookie -> cookie.getName().equalsIgnoreCase("lang"))
                                         .findFirst();
-
     if (!langOpt.isEmpty()) {
         currentLangCode = langOpt.get().getValue();
     }
+    // Relevant language locale identification:
     HashMap<String, String> currentLocale = locales.get(currentLangCode);
     String finalCurrentLangCode = currentLangCode;
     Language currentLang = null;
@@ -25,6 +29,15 @@
                                                     .findFirst();
     if (!currentLangOpt.isEmpty()) {
         currentLang = currentLangOpt.get();
+    }
+
+    // Picking sources relevant to the current language;
+    Language finalCurrentLang = currentLang;
+    ArrayList<Source> relevantSources = null;
+    if (sources != null) {
+        relevantSources = (ArrayList<Source>) sources.stream().sorted()
+                .filter(src -> src.getSourceLangCode().equals(finalCurrentLangCode))
+                .collect(Collectors.toList());
     }
 %>
 <nav class="navbar navbar-expand-lg">
@@ -47,6 +60,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-text">
                                 <%
+                                    // Filling language dropdown with existing values;
                                     if (languages != null) {
                                         for (Language lang : languages) {
                                 %>
@@ -75,10 +89,11 @@
             <div class="col-12 justify-content-between text-center">
                 <div class="btn-group col-12">
                     <%
-                        if (sources != null) {
-                            for (String source : sources) {
+                        // Extraction of relevant sources' names:
+                        if (relevantSources != null) {
+                            for (Source source : relevantSources) {
                     %>
-                    <a href="/source?src=<%= source %>" class="btn b-group btn-lg"><%= source %></a>
+                    <a href="/source?src=<%= source.getSourceName() %>" class="btn b-group btn-lg"><%= source.getSourceName() %></a>
                     <%
                             }
                         }

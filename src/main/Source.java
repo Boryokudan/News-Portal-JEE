@@ -1,10 +1,11 @@
 package main;
 
-public class Source {
+public class Source implements Comparable<Source> {
     private Long id;
     private String sourceName;
     private String sourceDescription;
     private String sourceURL;
+    private String sourceLangCode;
 
     public Long getId() {
         return id;
@@ -36,5 +37,18 @@ public class Source {
 
     public void setSourceURL(String sourceURL) {
         this.sourceURL = sourceURL;
+    }
+
+    public String getSourceLangCode() {
+        return sourceLangCode;
+    }
+
+    public void setSourceLangCode(String sourceLangCode) {
+        this.sourceLangCode = sourceLangCode;
+    }
+
+    @Override
+    public int compareTo(Source that) {
+        return this.sourceName.compareTo(that.sourceName);
     }
 }

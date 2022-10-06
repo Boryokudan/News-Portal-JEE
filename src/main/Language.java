@@ -12,13 +12,22 @@ public class Language {
     static {
         HashMap<String, HashMap<String, String>> locales = new HashMap<>();
         HashMap<String, String> localeRU = new HashMap<>();
+        localeRU.put("home", "Главная");
         localeRU.put("login", "Вход");
+        localeRU.put("email", "Электронная почта:");
+        localeRU.put("password", "Пароль:");
+        localeRU.put("login_error", "Неверный <strong>почтовый адрес</strong> или <strong>пароль</strong>. Попробуйте снова!");
         localeRU.put("about_source", "Об источнике");
         localeRU.put("contact_us", "Свяжитесь с нами:");
         localeRU.put("address", "Республика Казахстан, г. Алматы, ул. Айманова 126, 050005");
 
+
         HashMap<String, String> localeEN = new HashMap<>();
+        localeEN.put("home", "Home");
         localeEN.put("login", "Log In");
+        localeEN.put("email", "Email:");
+        localeEN.put("password", "Password:");
+        localeEN.put("login_error", "Invalid <strong>email</strong> or <strong>password</strong>. Try again!");
         localeEN.put("about_source", "About");
         localeEN.put("contact_us", "Contact us:");
         localeEN.put("address", "Aymanova st. 126, Almaty, 050005, Kazakhstan");

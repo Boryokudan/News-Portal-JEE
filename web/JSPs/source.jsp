@@ -12,7 +12,6 @@
                 ArrayList<Publication> allPublications = (ArrayList<Publication>) request.getAttribute("publications");
                 String source = (String) request.getAttribute("source");
 
-                Language finalCurrentLang = currentLang;
                 ArrayList<Publication> relevantPublications = (ArrayList<Publication>) allPublications.stream()
                         .filter(
                                 pub -> pub.getNews().getLanguage().getCode().equals(finalCurrentLang.getCode()) &&

@@ -19,6 +19,8 @@ import java.util.Set;
 public class LanguageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
         String localeCode = request.getParameter("lang").toLowerCase();
         final String codeEN = "en";
         final String codeRU = "ru";

@@ -1,4 +1,5 @@
 <%@ page import="main.Publication" %>
+<%@ page import="main.Source" %>
 <%@ page import="java.util.*" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,7 +13,7 @@
             <%
                 ArrayList<Publication> allPublications = (ArrayList<Publication>) request.getAttribute("publications");
 
-                Language finalCurrentLang = currentLang;
+                // Extraction of publications relevant to the current language;
                 ArrayList<Publication> relevantPublications = (ArrayList<Publication>) allPublications.stream()
                         .filter(pub -> pub.getNews().getLanguage().getCode().equals(finalCurrentLang.getCode()))
                         .collect(Collectors.toList());
