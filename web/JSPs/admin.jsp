@@ -4,7 +4,7 @@
     <body class="grad">
         <%@include file="/main_elements/navbar.jsp"%>
         <div class="container mt-5 d-flex justify-content-center">
-            <div class="row col-8 rounded align-self-center" style="background-color: #EDF2F4;">
+            <div class="row col-10 rounded align-self-center" style="background-color: #EDF2F4;">
                 <div class="col-12 p-5 pb-4">
                     <form action="/authentication" method="post">
                         <%

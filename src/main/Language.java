@@ -16,6 +16,7 @@ public class Language {
         localeRU.put("admin_panel", "MyAdmin");
         localeRU.put("login", "Вход");
         localeRU.put("logout", "Выход");
+        localeRU.put("read_more", "Подробнее");
         localeRU.put("name", "Имя:");
         localeRU.put("email", "Электронная почта:");
         localeRU.put("password", "Пароль:");
@@ -32,6 +33,7 @@ public class Language {
         localeEN.put("admin_panel", "MyAdmin");
         localeEN.put("login", "Log In");
         localeEN.put("logout", "Log Out");
+        localeEN.put("read_more", "Read more");
         localeEN.put("name", "Name:");
         localeEN.put("email", "Email:");
         localeEN.put("password", "Password:");

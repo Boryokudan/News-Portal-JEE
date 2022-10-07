@@ -57,7 +57,7 @@
                 </div>
                 <%--        Navbar--%>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-baseline">
+                    <div class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-baseline border border-2 border-dark rounded-1">
                         <div class="nav-item">
                             <a class="nav-link me-0 mt-2 mx-3" href="/">
                                 <img src="/resources/icons/home.png" class="me-1" height="30px" alt="home_icon"> <%= currentLocale.get("home") %>
@@ -70,17 +70,21 @@
                         %>
                                     <div class="nav-item">
                                         <a class="nav-link me-0 mt-2 mx-3" href="/admin-panel">
-                                            <img src="/resources/icons/admin.png" class="me-1" height="30px" alt="admin_icon"> <%= currentLocale.get("admin_panel") %>
+                                            <img src="/resources/icons/admin.png" class="me-1" height="30px" alt="admin_icon">
+                                            <%= currentLocale.get("admin_panel") %>
                                         </a>
                                     </div>
                                     <div class="nav-item">
                                         <a class="nav-link me-0 mt-2 mx-3" href="/profile">
-                                            <img src="/resources/icons/profile.png" class="me-1" height="30px" alt="profile_icon"> <%= activeUser.getFullName() %>
+                                            <img src="/resources/icons/profile.png" class="me-1" height="30px" alt="profile_icon">
+                                            <%= activeUser.getFullName() %>
                                         </a>
                                     </div>
                                     <div class="nav-item">
-                                        <a class="nav-link me-0 mt-2" href="/logout">
-                                            <img src="/resources/icons/login.png" height="30px" alt="login_icon"></a><%= currentLocale.get("logout") %>
+                                        <a class="nav-link me-3 mt-2" href="/logout">
+                                            <img src="/resources/icons/login.png" height="30px" alt="login_icon">
+                                            <%= currentLocale.get("logout") %>
+                                        </a>
                                     </div>
                         <%
                                 }
@@ -89,12 +93,15 @@
                         %>
                                 <div class="nav-item">
                                     <a class="nav-link me-0 mt-2 mx-3" href="/profile">
-                                        <img src="/resources/icons/profile.png" class="me-1" height="30px" alt="profile_icon"> <%= activeUser.getFullName() %>
+                                        <img src="/resources/icons/profile.png" class="me-1" height="30px" alt="profile_icon">
+                                        <%= activeUser.getFullName() %>
                                     </a>
                                 </div>
                                 <div class="nav-item">
                                     <a class="nav-link me-0 mt-2" href="/logout">
-                                        <img src="/resources/icons/login.png" height="30px" alt="login_icon"></a><%= currentLocale.get("logout") %>
+                                        <img src="/resources/icons/login.png" height="30px" alt="login_icon">
+                                        <%= currentLocale.get("logout") %>
+                                    </a>
                                 </div>
                         <%
                                 }
@@ -122,7 +129,7 @@
                                 %>
                                 <li>
                                     <a class="dropdown-item" href="/language?lang=<%= lang.getCode() %>">
-                                        <img class="me-2" src="<%= lang.getIconURL() %>" alt="en_icon">
+                                        <img class="me-0" src="<%= lang.getIconURL() %>" alt="en_icon">
                                         <%=lang.getName()%>
                                     </a>
                                 </li>

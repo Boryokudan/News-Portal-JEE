@@ -49,7 +49,7 @@ public class AuthenticationServlet extends HttpServlet {
 
         if (user != null && password.equals(user.getPassword())) {
             request.getSession().setAttribute("activeUser", user);
-            response.sendRedirect("/index");
+            response.sendRedirect("/");
         }
         else {
             request.getRequestDispatcher("JSPs/authentication.jsp?invalid").forward(request, response);
