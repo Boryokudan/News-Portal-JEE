@@ -6,7 +6,6 @@
 
 <%
     // Main params;
-    ArrayList<Source> sources = (ArrayList<Source>) request.getAttribute("sources");
     ArrayList<Language> languages = (ArrayList<Language>) request.getAttribute("languages");
     HashMap<String, HashMap<String, String>> locales = (HashMap<String, HashMap<String, String>>) request.getAttribute("locales");
 
@@ -36,13 +35,13 @@
     }
 
     // Picking sources relevant to the current language;
-    Language finalCurrentLang = currentLang;
-    ArrayList<Source> relevantSources = null;
-    if (sources != null) {
-        relevantSources = (ArrayList<Source>) sources.stream().sorted()
-                .filter(src -> src.getSourceLangCode().equals(finalCurrentLangCode))
-                .collect(Collectors.toList());
-    }
+//    Language finalCurrentLang = currentLang;
+//    ArrayList<Source> relevantSources = null;
+//    if (sources != null) {
+//        relevantSources = (ArrayList<Source>) sources.stream().sorted()
+//                .filter(src -> src.getSourceLangCode().equals(finalCurrentLangCode))
+//                .collect(Collectors.toList());
+//    }
 %>
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid col-10 d-block">
@@ -69,7 +68,7 @@
                                 if (activeUser.getRole() == 1) {
                         %>
                                     <div class="nav-item">
-                                        <a class="nav-link me-0 mt-2 mx-3" href="/admin">
+                                        <a class="nav-link me-0 mt-2 mx-3" href="/admin-panel">
                                             <img src="/resources/icons/admin.png" class="me-1" height="30px" alt="admin_icon">
                                             <%= currentLocale.get("admin_panel") %>
                                         </a>
@@ -140,23 +139,6 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-<%--        Link Group--%>
-        <div class="row mt-3">
-            <div class="col-12 justify-content-between text-center">
-                <div class="btn-group col-12">
-                    <%
-                        // Extraction of relevant sources' names:
-                        if (relevantSources != null) {
-                            for (Source source : relevantSources) {
-                    %>
-                    <a href="/source?src=<%= source.getSourceName() %>" class="btn b-group btn-lg"><%= source.getSourceName() %></a>
-                    <%
-                            }
-                        }
-                    %>
                 </div>
             </div>
         </div>

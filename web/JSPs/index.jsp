@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="card-footer p-3">
                                         <a href="/details?id=<%= relevantPublications.get(1).getId() %>" class="btn b-group btn-lg">
-                                            Read more <img src="/resources/icons/details.png" alt="read_more"></a></a>
+                                            Read more <img src="/resources/icons/details.png" alt="read_more"></a>
                                     </div>
                                 </div>
                             </div>

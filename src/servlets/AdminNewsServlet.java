@@ -1,8 +1,6 @@
 package servlets;
 
-import main.DBManager;
-import main.Language;
-import main.User;
+import main.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
-@WebServlet (name = "AdminServlet", value = "/admin" )
-public class AdminServlet extends HttpServlet {
+@WebServlet (name = "AdminNewsServlet", value = "/admin_news" )
+public class AdminNewsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Language> languages = DBManager.getLanguages();
@@ -26,7 +25,12 @@ public class AdminServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("activeUser");
 
         if (user != null && user.getRole() == 1) {
-            response.sendRedirect("admin_publications");
+//            ArrayList<News> news = (ArrayList<News>) DBManager.getPublications().stream()
+//                                                                .map(Publication::getNews)
+//                                                                .collect(Collectors.toList());
+            ArrayList<Publication> publications =  DBManager.getPublications();
+            request.setAttribute("publications", publications);
+            request.getRequestDispatcher("JSPs/admin.jsp?show=news").forward(request, response);
         }
         else {
             request.getRequestDispatcher("JSPs/access-denied.jsp").forward(request, response);

@@ -13,7 +13,7 @@
     // Checking if any user is logged in;
     User activeUser = (User) session.getAttribute("activeUser");
 
-    // Default lang value;
+    // Default language value;
     String currentLangCode = "en";
 
     // Cookie processing;
@@ -69,7 +69,7 @@
                                 if (activeUser.getRole() == 1) {
                         %>
                                     <div class="nav-item">
-                                        <a class="nav-link me-0 mt-2 mx-3" href="/admin-panel">
+                                        <a class="nav-link me-0 mt-2 mx-3" href="/admin">
                                             <img src="/resources/icons/admin.png" class="me-1" height="30px" alt="admin_icon">
                                             <%= currentLocale.get("admin_panel") %>
                                         </a>

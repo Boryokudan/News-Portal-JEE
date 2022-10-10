@@ -47,3 +47,9 @@
     color: white !important;
     background-color: #2f2927 !important;
 }
+.admin-main {
+    border: 1px black solid;
+    background-color: #E5E2E3 !important;
+    min-height: 800px;
+    border-radius: 10px;
+}

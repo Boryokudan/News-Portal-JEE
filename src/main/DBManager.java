@@ -28,7 +28,7 @@ public class DBManager {
 
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM t_users WHERE email = ?"
+            "SELECT * FROM t_users WHERE email = ?"
             );
             statement.setString(1, email);
 
@@ -54,13 +54,13 @@ public class DBManager {
         try {
             sources = new ArrayList<>();
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT src.id, " +
-                            "       src.source_name, " +
-                            "       src.source_description, " +
-                            "       src.source_url, " +
-                            "       lang.lang_code " +
-                            "FROM t_source_data src " +
-                            "INNER JOIN t_languages lang ON src.lang_id = lang.id;"
+                "SELECT src.id, " +
+                    "       src.source_name, " +
+                    "       src.source_description, " +
+                    "       src.source_url, " +
+                    "       lang.lang_code " +
+                    "FROM t_source_data src " +
+                    "INNER JOIN t_languages lang ON src.lang_id = lang.id;"
             );
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -87,27 +87,27 @@ public class DBManager {
             publication = new Publication();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT pub.id, " +
-                            "       pub.rating, " +
-                            "       pub.news_id, " +
-                            "       nw.source_id, " +
-                            "       nw.title, " +
-                            "       nw.description, " +
-                            "       nw.content, " +
-                            "       nw.date, " +
-                            "       nw.image_url, " +
-                            "       nw.lang_id, " +
-                            "       src.source_name, " +
-                            "       src.source_description, " +
-                            "       src.source_url, " +
-                            "       lang.lang_name, " +
-                            "       lang.lang_code, " +
-                            "       lang.lang_icon " +
-                            "FROM t_publications pub " +
-                            "INNER JOIN t_news nw ON nw.id = pub.news_id " +
-                            "INNER JOIN t_source_data src ON src.id = nw.source_id " +
-                            "INNER JOIN t_languages lang ON lang.id = nw.lang_id " +
-                            "WHERE pub.id = ?"
+                "SELECT pub.id, " +
+                    "       pub.rating, " +
+                    "       pub.news_id, " +
+                    "       nw.source_id, " +
+                    "       nw.title, " +
+                    "       nw.description, " +
+                    "       nw.content, " +
+                    "       nw.date, " +
+                    "       nw.image_url, " +
+                    "       nw.lang_id, " +
+                    "       src.source_name, " +
+                    "       src.source_description, " +
+                    "       src.source_url, " +
+                    "       lang.lang_name, " +
+                    "       lang.lang_code, " +
+                    "       lang.lang_icon " +
+                    "FROM t_publications pub " +
+                    "INNER JOIN t_news nw ON nw.id = pub.news_id " +
+                    "INNER JOIN t_source_data src ON src.id = nw.source_id " +
+                    "INNER JOIN t_languages lang ON lang.id = nw.lang_id " +
+                    "WHERE pub.id = ?"
             );
             statement.setLong(1, id);
 
@@ -154,27 +154,27 @@ public class DBManager {
             publications = new ArrayList<>();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT pub.id, " +
-                            "       pub.rating, " +
-                            "       pub.news_id, " +
-                            "       nw.source_id, " +
-                            "       nw.title, " +
-                            "       nw.description, " +
-                            "       nw.content, " +
-                            "       nw.date, " +
-                            "       nw.image_url, " +
-                            "       nw.lang_id, " +
-                            "       src.source_name, " +
-                            "       src.source_description, " +
-                            "       src.source_url, " +
-                            "       lang.lang_name, " +
-                            "       lang.lang_code, " +
-                            "       lang.lang_icon " +
-                            "FROM t_publications pub " +
-                            "INNER JOIN t_news nw ON nw.id = pub.news_id " +
-                            "INNER JOIN t_source_data src ON src.id = nw.source_id " +
-                            "INNER JOIN t_languages lang ON lang.id = nw.lang_id " +
-                            "ORDER BY pub.rating DESC, nw.date DESC"
+                "SELECT pub.id, " +
+                    "       pub.rating, " +
+                    "       pub.news_id, " +
+                    "       nw.source_id, " +
+                    "       nw.title, " +
+                    "       nw.description, " +
+                    "       nw.content, " +
+                    "       nw.date, " +
+                    "       nw.image_url, " +
+                    "       nw.lang_id, " +
+                    "       src.source_name, " +
+                    "       src.source_description, " +
+                    "       src.source_url, " +
+                    "       lang.lang_name, " +
+                    "       lang.lang_code, " +
+                    "       lang.lang_icon " +
+                    "FROM t_publications pub " +
+                    "INNER JOIN t_news nw ON nw.id = pub.news_id " +
+                    "INNER JOIN t_source_data src ON src.id = nw.source_id " +
+                    "INNER JOIN t_languages lang ON lang.id = nw.lang_id " +
+                    "ORDER BY pub.id"
             );
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {

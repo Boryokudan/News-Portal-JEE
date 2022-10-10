@@ -3,7 +3,7 @@
 
 <%--  Page icon--%>
   <link rel="icon" href="/resources/logo/logo_pure.png">
-<%--  Bootstrap CSS and JS--%>
+<%--  CSS and JS--%>
   <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.css">
   <link type="text/css" rel="stylesheet" href="../css/main.css">
   <script type="text/javascript" src="../bootstrap/js/bootstrap.js" defer></script>

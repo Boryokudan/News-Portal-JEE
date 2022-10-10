@@ -2,6 +2,7 @@ package servlets;
 
 import main.DBManager;
 import main.Language;
+import main.Publication;
 import main.User;
 
 import javax.servlet.ServletException;
@@ -13,8 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@WebServlet (name = "AdminServlet", value = "/admin" )
-public class AdminServlet extends HttpServlet {
+@WebServlet (name = "AdminLanguagesServlet", value = "/admin_languages" )
+public class AdminLanguagesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Language> languages = DBManager.getLanguages();
@@ -26,7 +27,7 @@ public class AdminServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("activeUser");
 
         if (user != null && user.getRole() == 1) {
-            response.sendRedirect("admin_publications");
+            request.getRequestDispatcher("JSPs/admin.jsp?show=languages").forward(request, response);
         }
         else {
             request.getRequestDispatcher("JSPs/access-denied.jsp").forward(request, response);
