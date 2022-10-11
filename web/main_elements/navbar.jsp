@@ -114,6 +114,11 @@
                                     <img src="/resources/icons/login.png" height="30px" alt="login"> <%= currentLocale.get("login") %>
                                 </a>
                             </div>
+                            <div class="nav-item">
+                                <a class="nav-link me-0 mt-2" href="/registration">
+                                    <img src="/resources/icons/sign_up.png" height="30px" alt="sign_up"> <%= currentLocale.get("sign_up") %>
+                                </a>
+                            </div>
                         <%
                             }
                         %>

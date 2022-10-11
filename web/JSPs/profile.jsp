@@ -15,7 +15,7 @@
             %>
             <form>
                 <div class="mb-3 text-center">
-                    <h5><%= currentLocale.get("greeting") %><%= activeUser.getFullName() %>!</h5>
+                    <h5><%= currentLocale.get("greeting") %><strong><%= activeUser.getFullName() %></strong>!</h5>
                 </div>
                 <div class="mb-3">
                     <label for="user_role" class="form-label"><%= currentLocale.get("user_role") %></label>

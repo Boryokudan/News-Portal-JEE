@@ -1,6 +1,3 @@
-<%@ page import="main.Publication" %>
-<%@ page import="java.util.ArrayList" %>
-
 <div class="col-12">
     <table class="table table-striped">
         <thead>
@@ -15,7 +12,7 @@
         <%
             for (Language lang : languages) {
         %>
-        <tr>
+        <tr class="my-2">
             <th scope="row"><%= lang.getId() %></th>
             <td><%= lang.getName() %></td>
             <td><%= lang.getCode().toUpperCase() %></td>

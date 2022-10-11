@@ -23,6 +23,26 @@ public class DBManager {
         }
     }
 
+    public static void addUser(User user) {
+        if (user != null) {
+            try {
+                PreparedStatement statement = connection.prepareStatement(
+                        "INSERT INTO t_users (email, password, full_name) " +
+                            "VALUES (?, ?, ?)"
+                );
+                statement.setString(1, user.getEmail());
+                statement.setString(2, user.getPassword());
+                statement.setString(3, user.getFullName());
+
+                statement.executeUpdate();
+                statement.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            throw new NullPointerException();
+        }
+    }
     public static User getUser(String email) {
         User user = null;
 
@@ -49,8 +69,36 @@ public class DBManager {
         return user;
     }
 
+    public static ArrayList<User> getUsers() {
+        ArrayList<User> users = null;
+
+        try {
+            users = new ArrayList<>();
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM t_users"
+            );
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setId(resultSet.getLong("id"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+                user.setFullName(resultSet.getString("full_name"));
+                user.setRole(resultSet.getInt("role"));
+                users.add(user);
+
+                statement.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
     public static ArrayList<Source> getSources() {
         ArrayList<Source> sources = null;
+
         try {
             sources = new ArrayList<>();
             PreparedStatement statement = connection.prepareStatement(

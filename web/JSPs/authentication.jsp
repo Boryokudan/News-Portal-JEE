@@ -29,6 +29,29 @@
                             <button type="submit" class="btn b-group w-50 mt-4"><%= currentLocale.get("login") %></button>
                         </div>
                     </form>
+                    <div class="text-center">
+                        <%
+                            if (currentLangCode.equalsIgnoreCase("RU")) {
+                        %>
+                                <h6 class="mt-3">
+                                    <%= currentLocale.get("dont_have_account") %>
+                                    <a href="/registration" class="text-decoration-none">
+                                        <%= currentLocale.get("then_reg") %>!
+                                    </a>
+                                </h6>
+                        <%
+                            } else {
+                        %>
+                                <h6 class="mt-3">
+                                    <%= currentLocale.get("dont_have_account") %>
+                                    <a href="/registration" class="text-decoration-none">
+                                        <%= currentLocale.get("sign_up") %>!
+                                    </a>
+                                </h6>
+                        <%
+                            }
+                        %>
+                    </div>
                 </div>
             </div>
         </div>
