@@ -43,6 +43,28 @@ public class DBManager {
             throw new NullPointerException();
         }
     }
+
+    public static void editUserData(User user) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                "UPDATE t_users " +
+                    "SET email = ?, " +
+                    "password = ?, " +
+                    "full_name = ? " +
+                    "WHERE id = ?"
+            );
+            statement.setString(1, user.getEmail());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getFullName());
+            statement.setLong(4, user.getId());
+
+            statement.executeUpdate();
+
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public static User getUser(String email) {
         User user = null;
 

@@ -25,15 +25,13 @@ public class AdminNewsServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("activeUser");
 
         if (user != null && user.getRole() == 1) {
-//            ArrayList<News> news = (ArrayList<News>) DBManager.getPublications().stream()
-//                                                                .map(Publication::getNews)
-//                                                                .collect(Collectors.toList());
+
             ArrayList<Publication> publications =  DBManager.getPublications();
             request.setAttribute("publications", publications);
             request.getRequestDispatcher("JSPs/admin.jsp?show=news").forward(request, response);
         }
         else {
-            request.getRequestDispatcher("JSPs/access-denied.jsp").forward(request, response);
+            response.sendRedirect("/access-denied");
         }
     }
 

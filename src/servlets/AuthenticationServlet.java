@@ -22,11 +22,9 @@ public class AuthenticationServlet extends HttpServlet {
 
         ArrayList<Language> languages = DBManager.getLanguages();
         HashMap<String, HashMap<String, String>> locales = Language.getLocales();
-        // ArrayList<Source> sources = DBManager.getSources();
 
         request.setAttribute("languages", languages);
         request.setAttribute("locales", locales);
-        // request.setAttribute("sources", sources);
 
         request.getRequestDispatcher("JSPs/authentication.jsp").forward(request, response);
     }
@@ -36,11 +34,9 @@ public class AuthenticationServlet extends HttpServlet {
 
         ArrayList<Language> languages = DBManager.getLanguages();
         HashMap<String, HashMap<String, String>> locales = Language.getLocales();
-        // ArrayList<Source> sources = DBManager.getSources();
 
         request.setAttribute("languages", languages);
         request.setAttribute("locales", locales);
-        // request.setAttribute("sources", sources);
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");

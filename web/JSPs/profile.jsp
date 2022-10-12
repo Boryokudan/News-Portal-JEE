@@ -35,11 +35,11 @@
                 </div>
                 <div class="d-flex justify-content-center">
                     <button type="button" class="btn b-group w-50 mt-4" data-bs-toggle="modal" data-bs-target="#editUserModal">
-                        Edit
+                        <%= currentLocale.get("edit") %>
                     </button>
                 </div>
             </form>
-<%--            <%@include file="edit-user-modal.jsp"%>--%>
+            <%@include file="../main_elements/edit-user-modal.jsp"%>
         </div>
     </div>
 </div>

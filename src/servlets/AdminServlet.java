@@ -29,7 +29,7 @@ public class AdminServlet extends HttpServlet {
             response.sendRedirect("admin_publications");
         }
         else {
-            request.getRequestDispatcher("JSPs/access-denied.jsp").forward(request, response);
+            response.sendRedirect("/access-denied");
         }
     }
 

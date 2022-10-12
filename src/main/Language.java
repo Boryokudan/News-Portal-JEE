@@ -28,6 +28,7 @@ public class Language {
         localeRU.put("enter_password", "Введите пароль:");
         localeRU.put("re_password", "Повторите пароль:");
         localeRU.put("user_role", "Тип учетной записи: ");
+        localeRU.put("edit", "Изменить");
         localeRU.put("email_error", " уже <strong>используется!</strong>");
         localeRU.put("login_error", "Неверный <strong>почтовый адрес</strong> или <strong>пароль</strong>. Попробуйте снова!");
         localeRU.put("greeting", "Добро пожаловать, ");
@@ -53,6 +54,7 @@ public class Language {
         localeEN.put("re_password", "Repeat your password:");
         localeEN.put("email_error", " is <strong>already</strong> in use!");
         localeEN.put("user_role", "Account type: ");
+        localeEN.put("edit", "Edit");
         localeEN.put("login_error", "Invalid <strong>email</strong> or <strong>password</strong>. Try again!");
         localeEN.put("greeting", "Welcome, ");
         localeEN.put("about_source", "About");

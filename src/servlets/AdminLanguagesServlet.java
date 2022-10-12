@@ -30,7 +30,7 @@ public class AdminLanguagesServlet extends HttpServlet {
             request.getRequestDispatcher("JSPs/admin.jsp?show=languages").forward(request, response);
         }
         else {
-            request.getRequestDispatcher("JSPs/access-denied.jsp").forward(request, response);
+            response.sendRedirect("/access-denied");
         }
     }
 
