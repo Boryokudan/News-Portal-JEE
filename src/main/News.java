@@ -66,11 +66,19 @@ public class News {
         this.source = source;
     }
 
+    public void setSourceById(Long id) {
+        this.source = DBManager.getSource(id);
+    }
+
     public Language getLanguage() {
         return language;
     }
 
     public void setLanguage(Language language) {
         this.language = language;
+    }
+
+    public void setLanguageById(Long id) {
+        this.language = DBManager.getLanguage(id);
     }
 }

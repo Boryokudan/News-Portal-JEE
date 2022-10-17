@@ -17,6 +17,7 @@ import java.util.HashMap;
 public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().setAttribute("currentPage", "/registration");
         ArrayList<Language> languages = DBManager.getLanguages();
         HashMap<String, HashMap<String, String>> locales = Language.getLocales();
 
@@ -34,19 +35,42 @@ public class RegistrationServlet extends HttpServlet {
         request.setAttribute("languages", languages);
         request.setAttribute("locales", locales);
 
-        String fullName = request.getParameter("full_name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String rePassword = request.getParameter("re_password");
+        String fullName = request.getParameter("full_name");
 
-        if (password != null && password.equals(rePassword)) {
-            User user = new User();
-            user.setEmail(email);
-            user.setPassword(password);
-            user.setFullName(fullName);
+        boolean nullFieldsPassed = email == null || password == null || rePassword == null || fullName == null;
 
-            DBManager.addUser(user);
-            response.sendRedirect("/");
+        if (nullFieldsPassed)
+            request.getRequestDispatcher("JSPs/registration.jsp?error=null-fields").forward(request, response);
+
+        boolean emptyFieldsPassed = email.trim().equals("") || password.trim().equals("") || rePassword.trim().equals("") ||
+                fullName.trim().equals("");
+
+        if (emptyFieldsPassed) {
+            request.getRequestDispatcher("JSPs/registration.jsp?error=null-fields").forward(request, response);
+        }
+
+        boolean userExists = DBManager.getUser(email) != null;
+
+        if (!userExists) {
+            if (password.equals(rePassword) && !password.trim().equalsIgnoreCase("")) {
+                User newUser = new User();
+
+                newUser.setEmail(email);
+                newUser.setPassword(password);
+                newUser.setFullName(fullName);
+
+                DBManager.addUser(newUser);
+                response.sendRedirect("/authentication");
+            }
+            else {
+                request.getRequestDispatcher("JSPs/registration.jsp?error=passwords-error").forward(request, response);
+            }
+        }
+        else {
+            request.getRequestDispatcher("JSPs/registration.jsp?error=email-error").forward(request, response);
         }
     }
 }

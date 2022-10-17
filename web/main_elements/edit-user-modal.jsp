@@ -10,6 +10,16 @@
       <div class="modal-body row col-12 rounded align-self-center" style="background-color: #f7f7ff;">
         <form action="/edit-user-profile" method="post">
           <div class="mb-3 mt-3">
+              <%
+                  String error = request.getParameter("error");
+                  if (error != null && error.equals("email-edit-error")) {
+              %>
+              <div class="alert alert-danger" role="alert">
+                  <%= request.getParameter("email") + currentLocale.get("email_error") %>
+              </div>
+              <%
+                  }
+              %>
             <label for="name" class="form-label"><%= currentLocale.get("name") %></label>
             <input type="text" class="form-control" id="name" name="full_name" value="<%= activeUser.getFullName() %>">
           </div>
@@ -27,7 +37,7 @@
         </form>
       </div>
       <div class="modal-footer justify-content-center">
-        <button type="button" class="btn btn-main w-50" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-main w-50" data-bs-dismiss="modal"><%= currentLocale.get("cancel") %></button>
       </div>
     </div>
   </div>

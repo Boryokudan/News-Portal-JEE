@@ -7,12 +7,15 @@ import main.Source;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Optional;
 
 @WebServlet(name = "SourceServlet", value = "/source")
 public class SourceServlet extends HttpServlet {
@@ -28,12 +31,47 @@ public class SourceServlet extends HttpServlet {
         request.setAttribute("locales", locales);
         request.setAttribute("sources", sources);
 
-        String source = request.getParameter("src");
-        source = source.replace("%20", " ");
+        String sourceName = request.getParameter("src");
+        sourceName = sourceName.replace("%20", " ");
 
-        request.setAttribute("source", source);
+        // Retrieving Source object;
+        Source source = new Source();
+        String finalSourceName = sourceName;
+        Optional<Source> srcOpt = sources.stream().filter(s -> s.getSourceName().equals(finalSourceName)).findFirst();
+        if (srcOpt.isPresent()) {
+            source = srcOpt.get();
+        }
 
-        request.getRequestDispatcher("JSPs/source.jsp").forward(request, response);
+        // Ensuring that current language matches the language of the Source;
+        String currentLangCode = "en";
+        Cookie[] cookies = request.getCookies();
+        Optional<Cookie> langOpt = Arrays.stream(cookies)
+                .filter(cookie -> cookie.getName().equalsIgnoreCase("lang"))
+                .findFirst();
+
+        if (langOpt.isPresent()) {
+            currentLangCode = langOpt.get().getValue();
+        }
+
+        System.out.println(currentLangCode);
+        System.out.println(source.getSourceLangCode());
+
+        if (source != null) {
+            if (source.getSourceLangCode().equalsIgnoreCase(currentLangCode)) {
+                request.getSession().setAttribute("currentPage", "/source?src=" + sourceName);
+                request.setAttribute("source", sourceName);
+                request.getRequestDispatcher("JSPs/source.jsp").forward(request, response);
+            }
+            else {
+                request.getSession().setAttribute("currentPage", "/source?src=" + sourceName);
+                response.sendRedirect("/access-error?error=404");
+            }
+        }
+        else {
+            request.getSession().setAttribute("currentPage", "/source?src=" + sourceName);
+            response.sendRedirect("/access-error?error=404");
+        }
+
     }
 
     @Override

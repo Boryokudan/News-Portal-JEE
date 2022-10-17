@@ -33,22 +33,13 @@
     if (!currentLangOpt.isEmpty()) {
         currentLang = currentLangOpt.get();
     }
-
-    // Picking sources relevant to the current language;
-//    Language finalCurrentLang = currentLang;
-//    ArrayList<Source> relevantSources = null;
-//    if (sources != null) {
-//        relevantSources = (ArrayList<Source>) sources.stream().sorted()
-//                .filter(src -> src.getSourceLangCode().equals(finalCurrentLangCode))
-//                .collect(Collectors.toList());
-//    }
 %>
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid col-10 d-block">
         <div class="row">
             <div class="col-12 d-flex">
                 <div class="mt-1">
-                    <a class="navbar-brand" href="/"><img src="../resources/logo/logo.png" alt="logo" width="600px"></a>
+                    <a class="navbar-brand" href="/"><img src="../resources/logo/logo.png" alt="logo" width="500px"></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>

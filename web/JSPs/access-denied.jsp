@@ -6,7 +6,7 @@
         <div class="container mt-5 d-flex justify-content-center">
             <div class="row col-10 rounded align-self-center" style="background-color: #EDF2F4;">
                 <div class="col-12 p-5 pb-4 text-center h-50">
-                    <h4>Access denied. You have no rights to see the content of this page.</h4>
+                    <h4><%= currentLocale.get("access_denied") %></h4>
                 </div>
             </div>
         </div>

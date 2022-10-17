@@ -29,7 +29,8 @@ public class AdminServlet extends HttpServlet {
             response.sendRedirect("admin_publications");
         }
         else {
-            response.sendRedirect("/access-denied");
+            request.getSession().setAttribute("currentPage", "/admin");
+            response.sendRedirect("/access-error?error=auth");
         }
     }
 

@@ -16,14 +16,18 @@
                                     </div>
                         <%
                             }
+                            String email = request.getParameter("email");
+                            String password = request.getParameter("password");
                         %>
                         <div class="mb-3 ">
                             <label for="exampleInputEmail" class="form-label"><%= currentLocale.get("email") %></label>
-                            <input type="email" class="form-control" id="exampleInputEmail" name="email" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" id="exampleInputEmail" name="email"
+                                   value = "<%= email != null ? email : "" %>">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword" class="form-label"><%= currentLocale.get("password") %></label>
-                            <input type="password" class="form-control" id="exampleInputPassword" name="password">
+                            <input type="password" class="form-control" id="exampleInputPassword" name="password"
+                                   value = "<%= password != null ? password : "" %>">
                         </div>
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn b-group w-50 mt-4"><%= currentLocale.get("login") %></button>

@@ -49,7 +49,7 @@
         <div class="row">
             <div class="col-12 d-flex">
                 <div class="mt-1">
-                    <a class="navbar-brand" href="/"><img src="../resources/logo/logo.png" alt="logo" width="600px"></a>
+                    <a class="navbar-brand" href="/"><img src="../resources/logo/logo.png" alt="logo" width="500px"></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -69,7 +69,7 @@
                                 if (activeUser.getRole() == 1) {
                         %>
                                     <div class="nav-item">
-                                        <a class="nav-link me-0 mt-2 mx-3" href="/admin">
+                                        <a class="nav-link me-0 mt-2 mx-3" href="/admin-panel">
                                             <img src="/resources/icons/admin.png" class="me-1" height="30px" alt="admin_icon">
                                             <%= currentLocale.get("admin_panel") %>
                                         </a>

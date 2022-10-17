@@ -10,18 +10,18 @@
             <%
                 int userRole = activeUser.getRole();
                 String userRoleStr = userRole == 1
-                        ? (currentLangCode.equals("en") ? "superman" : "Вершитель судеб")
-                        : (currentLangCode.equals("en") ? "user" : "Пользователь");
+                        ? (currentLangCode.equals("en") ? "Superman" : "Вершитель судеб")
+                        : (currentLangCode.equals("en") ? "User" : "Пользователь");
             %>
             <form>
                 <div class="mb-3 text-center">
                     <h5><%= currentLocale.get("greeting") %><strong><%= activeUser.getFullName() %></strong>!</h5>
                 </div>
-                <div class="mb-3">
+                <div class="mt-5 mb-3">
                     <label for="user_role" class="form-label"><%= currentLocale.get("user_role") %></label>
                     <input type="text" class="form-control" id="user_role" name="user_role" value="<%= userRoleStr %>" disabled>
                 </div>
-                <div class="mb-3 mt-3">
+                <div class="mb-3">
                     <label for="name" class="form-label"><%= currentLocale.get("name") %></label>
                     <input type="text" class="form-control" id="name" name="name" value="<%= activeUser.getFullName() %>" disabled>
                 </div>

@@ -18,7 +18,7 @@ import java.util.HashMap;
 public class AuthenticationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
+        request.getSession().setAttribute("currentPage", "/authentication");
 
         ArrayList<Language> languages = DBManager.getLanguages();
         HashMap<String, HashMap<String, String>> locales = Language.getLocales();
@@ -30,7 +30,6 @@ public class AuthenticationServlet extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
 
         ArrayList<Language> languages = DBManager.getLanguages();
         HashMap<String, HashMap<String, String>> locales = Language.getLocales();

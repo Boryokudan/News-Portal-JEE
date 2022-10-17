@@ -40,8 +40,8 @@
                             <p class="card-text scrollable"><%= publication.getNews().getDescription() %></p>
                         </div>
                         <div class="card-footer p-3">
-                            <a href="/details?id=<%= publication.getId() %>" class="btn b-group btn-lg">
-                                Read more <img src="/resources/icons/details.png" alt="read_more">
+                            <a href="/details?id=<%= publication.getId() %>" class="btn b-group btn-md">
+                                <%= currentLocale.get("read_more") %> <img src="/resources/icons/details.png" alt="read_more">
                             </a>
                         </div>
                     </div>

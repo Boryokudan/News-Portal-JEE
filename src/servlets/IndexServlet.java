@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
+        request.getSession().setAttribute("currentPage", "/index");
 
         ArrayList<Publication> publications = DBManager.getPublications();
         ArrayList<Language> languages = DBManager.getLanguages();
@@ -27,6 +27,7 @@ public class IndexServlet extends HttpServlet {
         request.setAttribute("languages", languages);
         request.setAttribute("locales", locales);
         request.setAttribute("sources", sources);
+
         request.getRequestDispatcher("JSPs/index.jsp").forward(request, response);
     }
 
