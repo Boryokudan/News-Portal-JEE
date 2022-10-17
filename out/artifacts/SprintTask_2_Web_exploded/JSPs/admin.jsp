@@ -10,7 +10,7 @@
             }
         %>
         <div class="container col-12 admin-main mt-5 d-flex justify-content-center">
-            <div class="row col-12">
+            <div class="row col-12 ps-0">
                 <div class="col-2 ps-4 pt-4 about-source rounded">
                     <div class="row my-2">
                         <h5><%= currentLocale.get("admin_pane") %></h5>
